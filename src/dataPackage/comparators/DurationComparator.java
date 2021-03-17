@@ -4,7 +4,7 @@ import dataPackage.Process;
 
 import java.util.Comparator;
 
-public class durationComparator implements Comparator<Process> {
+public class DurationComparator implements Comparator<Process> {
 
     @Override
     public int compare(Process p1, Process p2) {

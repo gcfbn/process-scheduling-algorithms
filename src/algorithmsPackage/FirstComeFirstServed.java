@@ -1,7 +1,7 @@
 package algorithmsPackage;
 
 import dataPackage.Process;
-import dataPackage.comparators.arrivalTimeComparator;
+import dataPackage.comparators.ArrivalTimeComparator;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class FirstComeFirstServed implements Algorithm{
     @Override
     public double getAverageWaitingTime() {
 
-        processList.sort(new arrivalTimeComparator());
+        processList.sort(new ArrivalTimeComparator());
 
         double totalWaitingTime = 0.0;
         double currentTime = 0.0;

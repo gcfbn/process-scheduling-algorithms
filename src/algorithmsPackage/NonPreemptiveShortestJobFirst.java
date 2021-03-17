@@ -1,8 +1,8 @@
 package algorithmsPackage;
 
 import dataPackage.Process;
-import dataPackage.comparators.arrivalTimeComparator;
-import dataPackage.comparators.durationComparator;
+import dataPackage.comparators.ArrivalTimeComparator;
+import dataPackage.comparators.DurationComparator;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public class NonPreemptiveShortestJobFirst implements Algorithm {
     @Override
     public double getAverageWaitingTime() {
 
-        processes.sort(new arrivalTimeComparator());
+        processes.sort(new ArrivalTimeComparator());
 
         Process currentProcess = processes.get(0);
         double currentTime = currentProcess.getArrivalTime();
@@ -57,7 +57,7 @@ public class NonPreemptiveShortestJobFirst implements Algorithm {
                 if (j < processes.size()) tempProcess = processes.get(j);
             }
 
-            queue.sort(new durationComparator());
+            queue.sort(new DurationComparator());
 
             // if there is no unexecuted process with arrivalTime <= currentTime,
             // currentProcess = process with shortest arrivalTime
