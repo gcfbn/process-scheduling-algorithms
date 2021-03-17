@@ -73,8 +73,6 @@ public class NonPreemptiveShortestJobFirst implements Algorithm {
         for (Process p : processes) {
             double x = p.getCompletionTime() - p.getDuration() - p.getArrivalTime();
             totalWaitingTime += (x);
-//            System.out.println("x: " + x);
-//            System.out.println("total: " + totalWaitingTime);
         }
 
         return totalWaitingTime / processes.size();
