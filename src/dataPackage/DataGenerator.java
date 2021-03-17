@@ -66,7 +66,6 @@ public class DataGenerator {
     private static Process getRandomProcess() {
 
         double probability = Math.random();
-        System.out.println("p: " + probability);
         double randomDuration;
 
         // if random probability is in 1) range, generate duration between 0 and 0.3 * MAX_LENGTH

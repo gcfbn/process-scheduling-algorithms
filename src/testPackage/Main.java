@@ -1,7 +1,7 @@
 package testPackage;
 
 import algorithmsPackage.Algorithm;
-import algorithmsPackage.firstComeFirstServed;
+import algorithmsPackage.NonPreemptiveShortestJobFirst;
 import dataPackage.Process;
 
 import java.io.FileInputStream;
@@ -17,18 +17,22 @@ public class Main {
 
 //        System.out.println(DataGenerator.generateDataFile(filePath));
 
-        ArrayList<Process> processes = null;
+        ArrayList<Process> processes;
 
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))){
             int length = inputStream.readInt();
-            processes = (ArrayList<Process>)(inputStream.readObject());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+
+            for (int i=0; i<length; i++){
+                processes = (ArrayList<Process>)inputStream.readObject();
+
+                Algorithm algorithm = new NonPreemptiveShortestJobFirst(processes);
+                System.out.println("waiting time: " + algorithm.getAverageWaitingTime());
+            }
+
+
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        Algorithm algorithm = new firstComeFirstServed(processes);
-        System.out.println(algorithm.getAverageWaitingTime());
     }
 }

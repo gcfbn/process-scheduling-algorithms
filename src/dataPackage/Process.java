@@ -18,6 +18,11 @@ public class Process implements Serializable {
         this.remainingTime = duration;
     }
 
+    @Override
+    public String toString() {
+        return "arrival time: " + arrivalTime + " duration: " + duration;
+    }
+
     public void setCompletionTime(double completionTime) {
         this.completionTime = completionTime;
     }
