@@ -63,8 +63,10 @@ public class NonPreemptiveShortestJobFirst implements Algorithm {
             // currentProcess = process with shortest arrivalTime
             if (!queue.isEmpty())
                 currentProcess = queue.get(0);
-            else if (i < processes.size() - 1)
+            else if (i < processes.size() - 1){
                 currentProcess = processes.get(i + 1);
+                queue.add(currentProcess);
+            }
         }
 
         double totalWaitingTime = 0.0;
