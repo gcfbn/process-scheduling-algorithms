@@ -1,6 +1,5 @@
 package dataPackage;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -27,7 +26,7 @@ public class DataGenerator {
 
     public static boolean generateDataFile(String filePath) {
 
-        ObjectOutputStream outputStream = null;
+        ObjectOutputStream outputStream;
 
         try {
             outputStream = new ObjectOutputStream(new FileOutputStream(filePath));
@@ -67,20 +66,21 @@ public class DataGenerator {
     private static Process getRandomProcess() {
 
         double probability = Math.random();
+        System.out.println("p: " + probability);
         double randomDuration;
 
         // if random probability is in 1) range, generate duration between 0 and 0.3 * MAX_LENGTH
         if (probability < SHORT_PROCESSES_RANGE)
-            randomDuration = Math.random() * 0.3 * MAX_LENGTH + 0.000001;    //+0.000001 prevents getting a process which lasts 0
+            randomDuration = MAX_LENGTH * Math.random() * 0.3  + 0.000001;    //+0.000001 prevents getting a process which lasts 0
 
             //if random probability is in 2) range, generate duration between 0.3 and 0.7 of MAX_LENGTH
         else if (probability < MEDIUM_PROCESSES_RANGE)
-            randomDuration = SHORT_PROCESSES_RANGE + Math.random() * (MEDIUM_PROCESSES_RANGE - SHORT_PROCESSES_RANGE);
+            randomDuration = MAX_LENGTH * (SHORT_PROCESSES_RANGE + Math.random() * (MEDIUM_PROCESSES_RANGE - SHORT_PROCESSES_RANGE));
 
             //if random probability is in 3) range, generate duration between 0.7 and 1.0 of MAX_LENGTH
-        else randomDuration = MEDIUM_PROCESSES_RANGE + Math.random() * (1.0 - MEDIUM_PROCESSES_RANGE);
+        else randomDuration = MAX_LENGTH * (MEDIUM_PROCESSES_RANGE + Math.random() * (1.0 - MEDIUM_PROCESSES_RANGE));
 
-        double randomArrivalTime = Math.ceil(Math.random() * MAX_ARRIVAL_TIME);
+        double randomArrivalTime = Math.random() * MAX_ARRIVAL_TIME;
 
         return new Process(randomDuration, randomArrivalTime);
     }
