@@ -5,16 +5,16 @@ import dataPackage.comparators.arrivalTimeComparator;
 
 import java.util.ArrayList;
 
-public class firstComeFirstServed implements Algorithm{
+public class FirstComeFirstServed implements Algorithm{
 
     private final ArrayList<Process> processList;
 
-    public firstComeFirstServed(ArrayList<Process> processList) {
+    public FirstComeFirstServed(ArrayList<Process> processList) {
         this.processList = processList;
     }
 
     @Override
-    public float getAverageWaitingTime() {
+    public double getAverageWaitingTime() {
 
         processList.sort(new arrivalTimeComparator());
 
@@ -34,6 +34,6 @@ public class firstComeFirstServed implements Algorithm{
             totalWaitingTime += (p.getCompletionTime() - p.getDuration() - p.getArrivalTime());
         }
 
-        return (float) (totalWaitingTime / processList.size());
+        return (totalWaitingTime / processList.size());
     }
 }
