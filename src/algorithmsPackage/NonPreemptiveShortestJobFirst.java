@@ -49,7 +49,7 @@ public class NonPreemptiveShortestJobFirst implements Algorithm {
             Process tempProcess = processes.get(j);
             while (tempProcess.getArrivalTime() <= currentTime && j < processes.size()) {
 
-                // if processes is not executed and is not in the queue, add it to the queue
+                // if process is not executed and is not in the queue, add it to the queue
                 if (!tempProcess.getIsDone() && !queue.contains(tempProcess))
                     queue.add(tempProcess);
 
